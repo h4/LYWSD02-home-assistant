@@ -4,3 +4,5 @@ Home-Assistant sensor for [Xiaomi LYWSD02 Hygrometer Thermometer](https://www.ba
 ## !WORK IN PROGRESS!
 
 *TODO:* Documentation 
+
+![pixel](https://mc.yandex.ru/watch/53742889)
