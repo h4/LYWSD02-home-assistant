@@ -16,10 +16,6 @@ class Lywsd02Client:
         self._humidity = None
 
     @staticmethod
-    def parse_temperature(value):
-        return struct.unpack('H', value)[0] / 100
-
-    @staticmethod
     def parse_humidity(value):
         return int(value)
 
