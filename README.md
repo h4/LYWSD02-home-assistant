@@ -3,6 +3,37 @@ Home-Assistant sensor for [Xiaomi LYWSD02 Hygrometer Thermometer](https://www.ba
 
 ## !WORK IN PROGRESS!
 
-*TODO:* Documentation 
+*TODO:* Add more documentation 
+
+# Installation
+
+1. Copy `custom_components/lywsd02` directory into `custom_components` inside you'r HA directory
+2. Add this block into `configuration.yaml`
+    ```yaml
+    lywsd02:
+      mac: 3A:57:C8:89:70:BE
+      sensor:
+        - enabled: true
+          name: 'My Thermometer'
+    ```
+    where `mac` property is you'r BT Thermometer mac address. See [mitemp_bt docs](https://www.home-assistant.io/components/mitemp_bt/#configuration)
+    for instructions.
+3. Update or create sensor templates (**this step will be simplified in future**)
+    ```yaml
+   sensor:
+       - platform: template
+        sensors:
+            my_temp:
+                friendly_name: "Entrance Temperature"
+                value_template: "{{ states.sensor.my_thermometer.attributes.temperature }}"
+                unit_of_measurement: 'ºC'
+            my_humid:
+                friendly_name: "Entrance Humidity"
+                value_template: "{{ states.sensor.my_thermometer.attributes.humidity }}"
+                unit_of_measurement: '%'
+    ```
+4. Restart Home-Assistant
+
+
 
 ![pixel](https://mc.yandex.ru/watch/53742889)

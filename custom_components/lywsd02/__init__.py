@@ -6,8 +6,9 @@ import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers import discovery
 from homeassistant.util import Throttle
+from homeassistant.const import (CONF_MAC)
+from lywsd02 import Lywsd02Client as Client
 
-from .client import Lywsd02Client as Client
 from .const import (
     CONF_ENABLED,
     CONF_NAME,
@@ -20,7 +21,7 @@ from .const import (
     REQUIRED_FILES,
     STARTUP,
     VERSION,
-    CONF_MAC)
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -76,7 +77,6 @@ async def async_setup(hass, config):
 
         for entry in platform_config:
             entry_config = entry
-            _LOGGER.critical(entry_config)
 
             # If entry is not enabled, skip.
             if not entry_config[CONF_ENABLED]:
@@ -122,9 +122,13 @@ class Lywsd02Data:
         """Update data."""
         # This is where the main logic to update platform data goes.
         try:
-            data = self.client.get_data()
-            _LOGGER.critical('Lywsd02Data.update_data:')
-            _LOGGER.critical(data)
-            self.hass.data[DOMAIN_DATA]["data"] = data
+            temperature = self.client.temperature
+            humidity = self.client.humidity
+            time = self.client.time[0]
+            self.hass.data[DOMAIN_DATA]["data"] = {
+                'temperature': temperature,
+                'humidity': humidity,
+                'time': time,
+            }
         except Exception as error:  # pylint: disable=broad-except
             _LOGGER.error("Could not update data - %s", error)

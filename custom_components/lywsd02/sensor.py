@@ -27,24 +27,20 @@ class Lywsd02Sensor(Entity):
     async def async_update(self):
         """Update the sensor."""
         # Send update "signal" to the component
-        _LOGGER.critical("Fetch new data from lywsd02")
         data = await self.hass.data[DOMAIN_DATA]["client"].update_data()
-        _LOGGER.critical('data:')
-        _LOGGER.critical(data)
 
         # Get new data (if any)
-        updated = self.hass.data[DOMAIN_DATA]["data"].get("data", {})
+        updated = self.hass.data[DOMAIN_DATA]["data"]
 
         # Check the data and update the value.
         self._state = updated
-        _LOGGER.critical(updated)
 
         # Set/update attributes
         self.attr["attribution"] = ATTRIBUTION
         self.attr["temperature"] = updated.get("temperature")
         self.attr["humidity"] = updated.get("humidity")
-        self.attr["time"] = str(updated.get("time"))
-        # self.attr["none"] = updated.get("none")
+        if updated.get("time"):
+            self.attr["time"] = updated.get("time").strftime("%H:%M:%S")
 
     @property
     def name(self):
@@ -53,8 +49,6 @@ class Lywsd02Sensor(Entity):
 
     @property
     def state(self):
-        # TODO: return as condition enum
-
         """Return the state of the sensor."""
         return self._state
 
