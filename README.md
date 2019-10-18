@@ -7,7 +7,7 @@ Home-Assistant sensor for [Xiaomi LYWSD02 Hygrometer Thermometer](https://www.ba
 
 # Installation
 
-1. Copy `custom_components/lywsd02` directory into `custom_components` inside you'r HA directory
+1. Copy `custom_components/lywsd02` directory into `custom_components` inside your HA directory (typically, where `configuration.yaml` is placed).
 2. Add this block into `configuration.yaml`
     ```yaml
     lywsd02:
