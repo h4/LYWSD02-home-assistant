@@ -7,7 +7,7 @@ REQUIRED_FILES = [
     "manifest.json",
     "sensor.py",
 ]
-ISSUE_URL = "https://github.com/h4/blueprint/issues/lywsd02-home-assistant"
+ISSUE_URL = "https://github.com/h4/LYWSD02-home-assistant/issues"
 ATTRIBUTION = ""
 STARTUP = """
 -------------------------------------------------------------------
