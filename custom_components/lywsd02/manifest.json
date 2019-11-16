@@ -4,5 +4,5 @@
   "documentation": "https://github.com/h4/LYWSD02-home-assistant",
   "dependencies": [],
   "codeowners": ["@h4"],
-  "requirements": ["lywsd02>=0.0.3"]
+  "requirements": ["lywsd02>=0.0.4"]
 }
