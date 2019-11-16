@@ -14,7 +14,6 @@ async def async_setup_platform(
     """Setup sensor platform."""
     async_add_entities([Lywsd02Sensor(hass, discovery_info)], True)
 
-
 class Lywsd02Sensor(Entity):
     """lywsd02 Sensor class."""
 
@@ -39,6 +38,7 @@ class Lywsd02Sensor(Entity):
         self.attr["attribution"] = ATTRIBUTION
         self.attr["temperature"] = updated.get("temperature")
         self.attr["humidity"] = updated.get("humidity")
+        self.attr["battery_level"] = updated.get("battery")
         if updated.get("time"):
             self.attr["time"] = updated.get("time").strftime("%H:%M:%S")
 
@@ -50,7 +50,7 @@ class Lywsd02Sensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        return self._state
+        return self.environmental_index
 
     @property
     def icon(self):
@@ -61,3 +61,24 @@ class Lywsd02Sensor(Entity):
     def device_state_attributes(self):
         """Return the state attributes."""
         return self.attr
+
+    @property
+    def environmental_index(self):
+        temp_index = 'Comfort'
+        humid_index = 'Comfort'
+        t = self._state.get('temperature')
+        h = self._state.get('humidity')
+        if t < 21:
+            temp_index = 'Cold'
+        if t > 26:
+            temp_index = 'Hot'
+        if h < 40:
+            humid_index = 'Dry'
+        if h > 60:
+            humid_index = 'Dump'
+        if humid_index != 'Comfort':
+            if temp_index != 'Comfort':
+                return '{} and {}'.format(temp_index, humid_index)
+            else:
+                return humid_index
+        return temp_index

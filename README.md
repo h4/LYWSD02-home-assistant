@@ -34,6 +34,13 @@ Home-Assistant sensor for [Xiaomi LYWSD02 Hygrometer Thermometer](https://www.ba
     ```
 4. Restart Home-Assistant
 
+## Available attributes
+
+| Name | Type | Units | Description |
+|------|------|-------|-------------|
+| tetemperature | float | °C | Temperature measured value |
+| humidity | int | % | Relative Humidity measured value |
+| battery_level | int | % | *Experimental* Device battery level. I'm not sure that it gets correct | 
 
 
 ![pixel](https://mc.yandex.ru/watch/53742889)

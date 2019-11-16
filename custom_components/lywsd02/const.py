@@ -1,6 +1,6 @@
 DOMAIN = "lywsd02"
 DOMAIN_DATA = "{}_data".format(DOMAIN)
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 PLATFORMS = ["sensor"]
 REQUIRED_FILES = [
     "const.py",
@@ -8,7 +8,7 @@ REQUIRED_FILES = [
     "sensor.py",
 ]
 ISSUE_URL = "https://github.com/h4/LYWSD02-home-assistant/issues"
-ATTRIBUTION = ""
+ATTRIBUTION = "Xiaomy Lywsd02 Temperature and Humidity sensor"
 STARTUP = """
 -------------------------------------------------------------------
 {name}
