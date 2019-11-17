@@ -41,6 +41,7 @@ Home-Assistant sensor for [Xiaomi LYWSD02 Hygrometer Thermometer](https://www.ba
 | tetemperature | float | °C | Temperature measured value |
 | humidity | int | % | Relative Humidity measured value |
 | battery_level | int | % | *Experimental* Device battery level. I'm not sure that it gets correct | 
+| time | str | time string | Current time displayed on device | 
 
 
 ![pixel](https://mc.yandex.ru/watch/53742889)

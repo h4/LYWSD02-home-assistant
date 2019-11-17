@@ -125,10 +125,12 @@ class Lywsd02Data:
             temperature = self.client.temperature
             humidity = self.client.humidity
             time = self.client.time[0]
+            battery = self.client.battery
             self.hass.data[DOMAIN_DATA]["data"] = {
                 'temperature': temperature,
                 'humidity': humidity,
                 'time': time,
+                'battery': battery,
             }
         except Exception as error:  # pylint: disable=broad-except
             _LOGGER.error("Could not update data - %s", error)
