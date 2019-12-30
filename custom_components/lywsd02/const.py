@@ -8,7 +8,7 @@ REQUIRED_FILES = [
     "sensor.py",
 ]
 ISSUE_URL = "https://github.com/h4/LYWSD02-home-assistant/issues"
-ATTRIBUTION = "Xiaomy Lywsd02 Temperature and Humidity sensor"
+ATTRIBUTION = "Xiaomi Lywsd02 Temperature and Humidity sensor"
 STARTUP = """
 -------------------------------------------------------------------
 {name}
