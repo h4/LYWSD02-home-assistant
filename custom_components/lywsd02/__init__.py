@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import os
 from datetime import timedelta
@@ -117,20 +118,24 @@ class Lywsd02Data:
         self.hass = hass
         self.client = client
 
+    def _update_data_blocking(self):
+        temperature = self.client.temperature
+        humidity = self.client.humidity
+        time = self.client.time[0]
+        battery = self.client.battery
+        self.hass.data[DOMAIN_DATA]["data"] = {
+            'temperature': temperature,
+            'humidity': humidity,
+            'time': time,
+            'battery': battery,
+        }
+
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     async def update_data(self):
         """Update data."""
         # This is where the main logic to update platform data goes.
+        loop = asyncio.get_event_loop()
         try:
-            temperature = self.client.temperature
-            humidity = self.client.humidity
-            time = self.client.time[0]
-            battery = self.client.battery
-            self.hass.data[DOMAIN_DATA]["data"] = {
-                'temperature': temperature,
-                'humidity': humidity,
-                'time': time,
-                'battery': battery,
-            }
+            await loop.run_in_executor(None, self._update_data_blocking)
         except Exception as error:  # pylint: disable=broad-except
             _LOGGER.error("Could not update data - %s", error)
