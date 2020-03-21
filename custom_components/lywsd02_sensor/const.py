@@ -1,6 +1,6 @@
 DOMAIN = "lywsd02_sensor"
 DOMAIN_DATA = "{}_data".format(DOMAIN)
-VERSION = "0.0.5"
+VERSION = "0.0.6"
 PLATFORMS = ["sensor"]
 REQUIRED_FILES = [
     "const.py",
