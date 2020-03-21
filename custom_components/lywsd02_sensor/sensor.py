@@ -14,6 +14,7 @@ async def async_setup_platform(
     """Setup sensor platform."""
     async_add_entities([Lywsd02Sensor(hass, discovery_info)], True)
 
+
 class Lywsd02Sensor(Entity):
     """lywsd02 Sensor class."""
 
@@ -68,6 +69,8 @@ class Lywsd02Sensor(Entity):
         humid_index = 'Comfort'
         t = self._state.get('temperature')
         h = self._state.get('humidity')
+        if t is None or h is None:
+            return 'Unknown'
         if t < 21:
             temp_index = 'Cold'
         if t > 26:

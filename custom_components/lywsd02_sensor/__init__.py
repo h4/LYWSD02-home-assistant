@@ -57,9 +57,7 @@ async def async_setup(hass, config):
     if not file_check:
         return False
 
-    hass.data[DOMAIN_DATA] = {}
-
-    hass.data[DOMAIN_DATA] = {}
+    hass.data[DOMAIN_DATA] = {"data": {}}
 
     # Get "global" configuration.
     mac = config[DOMAIN].get(CONF_MAC)
